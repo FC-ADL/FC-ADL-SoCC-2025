@@ -216,8 +216,6 @@ def detect_fcadl(df):
 
 
 def run_detection(method, condition, n, run_iteration):
-    os.makedirs("../results", exist_ok=True)
-
     df = pd.read_csv(f"../data/{condition}_{n}/cpu_usage.csv")
     df = df.iloc[:-360]
     df_zero_na = df.replace(0, np.nan)
@@ -278,6 +276,8 @@ def run_detection(method, condition, n, run_iteration):
 
 if __name__ == "__main__":
     run_iteration = sys.argv[1]
+    os.makedirs("../results", exist_ok=True)
+    
     services = ['cp', 'hts', 'uts', 'ums']
     faults = ['cpuhog', 'memhog', 'memhog_redo', 'netdelay']
 
